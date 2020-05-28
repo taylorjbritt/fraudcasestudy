@@ -9,6 +9,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score
 from sklearn.ensemble import RandomForestClassifier,AdaBoostRegressor
 from imblearn.over_sampling import SMOTE
 from sklearn.model_selection import GridSearchCV
+
 def convertunix(columns,df=df):
     '''columns: list of column headers to convert
        df: name of df'''
@@ -84,4 +85,4 @@ if __name__ == '__main__':
     df = clean_df('../data/data.json')
     df['fraud'] = df['acct_type'].str[0] == 'f'
     df.drop('acct_type',axis=1,inplace=True)
-    df.to_pickle('../data/pickled_df.pkl')
+    df.to_pickle('../data/pickled_df_.pkl')
