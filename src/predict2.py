@@ -50,6 +50,7 @@ def get_min_ticket_cost(val):
         return 0
     else:
         return min(ticket_costs)
+    
 def clean_df(path_to_file):
     df=pd.read_json(path_to_file)
     df['tickets_total'] = df['ticket_types'].apply(get_num_tickets)
