@@ -33,7 +33,7 @@ def get_new_data():
 def greet():
     return render_template('hello.html')
 
-@app.route('/score', methods=['POST'])
+@app.route('/score', methods=['POST', 'GET'])
 def score():
     new_pt = get_page()
     event_name = new_pt['name'][0]
@@ -190,4 +190,4 @@ if __name__ == '__main__':
 
     # Start Flask app
     # app.run(host='0.0.0.0', port=PORT, debug=True)
-    app.run(host='0.0.0.0', port=8082, debug=False)
+    app.run(host='0.0.0.0', port=8082, debug=True)
