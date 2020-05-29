@@ -65,7 +65,7 @@ We also created dummy variables out of whether the user was using facebook, twit
 
 ### Ticket Types
 
-There was also a lot of information pulled out of the ticket_types column, which was actually a list of dictionaries. In general, we found that fraudulent events tended to have higher maximum and minimum costs for the tickets they offered, but also tended to offer fewer "tiers" of tickets – i.e. different tickets at different costs. We also calculated the "total" value that was at stake in the event; i.e. the sum of the cost of tickets at a certain tier multiplied by the quanity available. We anticipated that this could be useful in  
+There was also a lot of information pulled out of the ticket_types column, which was actually a list of dictionaries. In general, we found that fraudulent events tended to have higher maximum and minimum costs for the tickets they offered, but also tended to offer fewer "tiers" of tickets – i.e. different tickets at different costs. We also calculated the "total" value that was at stake in the event; i.e. the sum of the cost of tickets at a certain tier multiplied by the quanity available. We anticipated that this could be useful in assessing how serious a potential fraud case was, as it would matter a lot more if a million dollars were on the line than only a few hundred.  
 
 ### Previous Payments and User Age
 
