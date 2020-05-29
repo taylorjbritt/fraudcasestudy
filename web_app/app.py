@@ -41,10 +41,21 @@ def score():
     
     # predict on the new data
     pred = model.predict(new_pt_clean)[0]
+    risk = probability(new_pt_clean)
     
     # DATA.append(json.dumps(request.json, sort_keys=True, indent=4, separators=(',', ': ')))
     # TIMESTAMP.append(time.time())
-    return render_template('score.html', event=event_name, predicted=pred)
+    return render_template('score.html', event=event_name, predicted=pred, risk_level=risk)
+
+def probability(df):
+    x = model.predict_proba(df)[0][1]
+    if x < .33:
+        return 'Low Risk'
+    elif x < .66:
+        return 'Medium Risk'
+    else:
+        return 'High Risk'
+    
 
 def get_page():
     """Revieves data from the specified url for prediction
