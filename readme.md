@@ -15,11 +15,11 @@
 
 ## 1. Motivation <a name="goal"></a>
 
-
+In this project we aimed to pull together a wide range of the things we learned over
 
 ## 2. Data and EDA  <a name="data"></a>
 
-Once we loaded our JSON file into a dataframe, we had 14337 events with 44 columns, however a number of the columns had a lot of information, for instance, ticket types was a list of 
+Once we loaded our JSON file into a dataframe, we had 14337 events with 44 columns, however a number of the columns had a lot of information, for instance, ticket types was a list of dictionaries, each of which included the quantity and price of the tickets available. We divided the columns roughly into thirds and each took at a look at what interested things we could pull out of the data.
 
 
 ### EDA
@@ -27,9 +27,18 @@ Once we loaded our JSON file into a dataframe, we had 14337 events with 44 colum
 ![](images/event_email.png)
 ![](images/fraud_email.png)
 
-![](images/boxplot_previous_payout.png)
+#### the plots above show f
 
 ![](images/fraud_by_different_features.png)
+
+
+
+#### Fraud cases had few previous payouts. Non-fraud cases included organizations with much higher levels of previous payments. 
+
+![](images/boxplot_previous_payout.png)
+
+
+#### Mosaic plots of fraud by select features:
 
 ![](images/mosaic_fraud_by_org_twitter_exists.png)
 ![](images/mosaic_fraud_by_user_type.png)
@@ -40,7 +49,7 @@ Once we loaded our JSON file into a dataframe, we had 14337 events with 44 colum
 
 ## 3. Feature Modeling  <a name="features"></a>
 
-Of the initial 44 columns, 16 were used for features modeling in some fashion. 
+Of the initial 43 non-target columns, 16 were used for features modeling in some fashion. We decided to drop columns with information that we wouldn't really have access too, like if the event had a payee (this seemed to get blocked from happening with a fraudulent event)
 
 ### Country and Email
 
@@ -65,18 +74,18 @@ We experimented with using boosted trees and random forests and ultimately settl
 
 In terms of tuning the model, we experimented with increasing the number of trees above 100 or limiting the max depth, but found that neither led ot a noticeable improvement. Our best performing model had the following results:
 
-===ACCURACY===
-0.9860524091293322
-===RECALL===
-0.8875878220140515
-===PRECISION===
-0.9546599496221663
-===F1===
-0.9199029126213593
+| Metrics   | Score |
+|-----------|-------|
+| Accuracy  | .986  |
+| Recall    | .888  |
+| Precision | .955  |
+| F1        | .920  |
 
-These were the most important features for the model:
+These were the most important features for the model – by far the most important was previous payout count, followed by age of the user (i.e.) how long the account had been around, and then the max cost of the tickets for the event and the total value of the event. 
 
 ![](images/feature_importances1.png)
+
+We also implemented a function that would look at the predicted probabilities for fraud risk, and categorize them as low (below .33), medium (below .66), or high (above .66), and in this way the client company would have an easier time assessing which cases are the most important to look at. A future idea we didn't have time to implement was to multiply the predicted risk by the total value of the event in order to help the company assess which events were really serious.
 
 ## 5. Database Setup  <a name="database"></a>
 
