@@ -125,8 +125,9 @@ def clean_new_data(df):
     df.drop(['object_id', 'name','name_length','num_order','num_payouts','org_facebook','org_twitter','payee_name','payout_type','previous_payouts','previous_payouts','org_name','org_desc','listed','fb_published','event_published','event_end','event_start','event_created','has_logo','has_header','currency','description','approx_payout_date','delivery_method','body_length','channels','gts','sale_duration', 'sale_duration2', 'ticket_types', 'user_created', 'user_type', 'venue_address', 'venue_country', 'venue_latitude', 'venue_longitude', 'venue_name', 'venue_state', 'show_map'],axis=1,inplace=True)
     return df
 
-def clean_new_data2(df):
+def clean_new_data2(x):
     #df=pd.read_json(path_to_file)
+    df = x.copy
     df['tickets_total'] = df['ticket_types'].apply(get_num_tickets)
     df['tiers'] = df['ticket_types'].apply(get_num_tiers)
     df['max_cost'] = df['ticket_types'].apply(get_max_ticket_cost)
@@ -152,8 +153,9 @@ def clean_new_data2(df):
     df.drop(['object_id', 'name','name_length','num_order','num_payouts','org_facebook','org_twitter','payee_name','payout_type','previous_payouts','previous_payouts','org_name','org_desc','listed','fb_published','event_published','event_end','event_start','event_created','has_logo','has_header','currency','description','approx_payout_date','delivery_method','body_length','channels','gts','sale_duration', 'sale_duration2', 'ticket_types', 'user_created', 'user_type', 'venue_address', 'venue_country', 'venue_latitude', 'venue_longitude', 'venue_name', 'venue_state', 'show_map'],axis=1,inplace=True)
     return df
 
-def clean_new_data3(df):
+def clean_new_data3(x):
     #df = pd.read_json(path_to_file)
+    df = x.copy()
     #df['tickets_total'] = df['ticket_types'].apply(get_num_tickets)
     df['tickets_total'] = sum(df.ticket_types[i]['quantity_total'] for i in range(len(df.ticket_types)))
     #df['tiers'] = df['ticket_types'].apply(get_num_tiers)
@@ -189,10 +191,10 @@ def clean_new_data3(df):
     
     return df
 
-def predict_fraud(ex_filepath, model):
-    ex = pd.read_json('../example.json')
-    clean_ex = clean_new_data3(ex)
-    pred = model.predict(clean_ex)
+def predict_fraud(ex, model):
+    #ex = pd.read_json('../example.json')
+    #clean_ex = clean_new_data2(ex)
+    pred = model.predict(ex)
     return pred[0]
 
 
@@ -213,9 +215,11 @@ if __name__ == '__main__':
 
     x = get_page()
 
-    print(predict_fraud(x, model))
+    clean_x = clean_new_data3(x)
 
-    prediction, event = (predict_fraud(x, model)), x
+    # print(predict_fraud(x, model))
+
+    # prediction, event = (predict_fraud(x, model)), x
 
 
 
