@@ -42,6 +42,14 @@ Text here
 
 ## 3. Feature Modeling  <a name="features"></a>
 
+Of the initial 44 columns, X were used for features modeling in some fashion.
+
+### Ticket Types
+
+### Country
+
+### Facebook / Twitter / Analytics
+
 ## 4. Model Selection & Performance  <a name="model"></a>
 
 ## 5. Database Setup  <a name="database"></a>
