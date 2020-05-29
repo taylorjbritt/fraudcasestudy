@@ -90,10 +90,10 @@ def clean_new_data(df):
     df.loc[~df["country"].isin(countrylist), "country"] = 0
     df.loc[df["country"].isin(countrylist), "country"] = 1
     df.drop(['object_id', 'name','name_length','num_order','num_payouts','org_facebook','org_twitter','payee_name','payout_type','previous_payouts','previous_payouts','org_name','org_desc','listed','fb_published','event_published','event_end','event_start','event_created','has_logo','has_header','currency','description','approx_payout_date','delivery_method','body_length','channels','gts','sale_duration', 'sale_duration2', 'ticket_types', 'user_created', 'user_type', 'venue_address', 'venue_country', 'venue_latitude', 'venue_longitude', 'venue_name', 'venue_state', 'show_map'],axis=1,inplace=True)
-    column_list = ['country', 'email_domain', 'has_analytics', 'user_age', 'tickets_total',
-       'tiers', 'max_cost', 'min_cost', 'total', 'intl_trans', 'type_one_user',
-       'org_desc_exists', 'org_name_exists', 'previous_payout_count',
-       'org_facebook_exists', 'org_twitter_exists']
+    # column_list = ['country', 'email_domain', 'has_analytics', 'user_age', 'tickets_total',
+    #    'tiers', 'max_cost', 'min_cost', 'total', 'intl_trans', 'type_one_user',
+    #    'org_desc_exists', 'org_name_exists', 'previous_payout_count',
+    #    'org_facebook_exists', 'org_twitter_exists']
     return df
 
 def predict_fraud(ex_filepath, model):
