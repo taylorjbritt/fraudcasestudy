@@ -44,6 +44,7 @@ if __name__ == '__main__':
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42, stratify = y)
 
     rf_model = RandomForestClassifier(n_estimators=100, random_state=0)
+    rf_model.fit(X_train,y_train)
     eval_model(rf_model, X_test, y_test)
     probs = rf_model.predict_proba(X_test)
 

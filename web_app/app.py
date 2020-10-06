@@ -92,9 +92,15 @@ if __name__ == '__main__':
     #     model = pickle.load(f)
     
     # Register for pinging service
+<<<<<<< HEAD
     #ip_address = socket.gethostbyname(socket.gethostname())
     #print "attempting to register %s:%d" % (ip_address, PORT)
     #register_for_ping(ip_address, str(PORT))
+=======
+    ip_address = socket.gethostbyname(socket.gethostname())
+    print("attempting to register %s:%d") % (ip_address, PORT)
+    register_for_ping(ip_address, str(PORT))
+>>>>>>> e1cc7fac7214d73aaaa7e20495a31061c1a80430
 
     # Start Flask app
     #app.run(host='0.0.0.0', port=PORT, debug=True)
