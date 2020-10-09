@@ -92,11 +92,7 @@ These were the most important features for the model – by far the most importa
 We also implemented a function that would look at the predicted probabilities for fraud risk, and categorize them as low (below .33), medium (below .66), or high (above .66), and in this way the client company would have an easier time assessing which cases are the most important to look at. A future idea we didn't have time to implement was to multiply the predicted risk by the total value of the event in order to help the company assess which events were really serious.
 
 ---
-## 5. Database Setup  <a name="database"></a>
 
-We created a database using postgres, but we didn't have time to set up a script to populate it. 
+## 5. Web App  <a name="app"></a>
 
----
-## 6. Web App  <a name="app"></a>
-
-We added our pickled model and scripts to get a new datapoint from the heroku servers, clean it in same way that we did with the dataframe, and predict whether or not the event was fraudulent or not. We modified the Web App to update every five seconds to check if there's a new case to predict.
+We added our pickled model and scripts to get a new datapoint from the heroku servers, clean it in same way that we did with the dataframe, and predict whether or not the event was fraudulent or not. We modified the Web App to update every five seconds to check if there's a new case to predict. (No longer active)
